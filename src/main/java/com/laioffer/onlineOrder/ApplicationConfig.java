@@ -6,9 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @Configuration
+@EnableWebMvc
 public class ApplicationConfig {
 
     @Bean(name="sessionFactory")
@@ -24,7 +26,7 @@ public class ApplicationConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("");
+        dataSource.setUrl("jdbc:mysql://mysql.cwtefzs8xnla.us-east-2.rds.amazonaws.com:3306/onlineOrder?createDatabaseIfNotExist=true&serverTimezone=UTC");
         dataSource.setUsername("simon");
         dataSource.setPassword("sql112358");
 
@@ -38,6 +40,4 @@ public class ApplicationConfig {
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         return hibernateProperties;
     }
-
-
 }
